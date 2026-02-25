@@ -176,10 +176,19 @@ body {
   margin-top: 20px;
 }
 
+.card-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .card-image img {
-  max-width: 100%;
+  width: min(240px, 85%);
   height: auto;
-  margin-bottom: 20px;
+  max-width: none;
+  margin: 0 0 18px 0;
+  display: block;
 }
 
 .service-card h4 {

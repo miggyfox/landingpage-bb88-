@@ -1,7 +1,12 @@
+*, *::before, *::after {
+    font-family: 'Circular Std', 'Circular Std Medium', sans-serif;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Circular Std Medium', sans-serif;
+    font-family: 'Circular Std', 'Circular Std Medium', sans-serif;
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
@@ -33,6 +38,11 @@ body {
     box-sizing: border-box;
 }
 
+.logo {
+    position: relative; /* Add this */
+    left: 70px; /* Add this - adjust this value to move logo right/left */
+}
+
 .logo img {
     height: 120px;        /* make it bigger */
     max-width: 390px;     /* cap the width so it doesn't push nav */
@@ -60,19 +70,20 @@ body {
     color: #ffffff;
     font-size: 1.35rem; /* slightly larger */
     font-weight: 500;
-    transition: color 0.3s;
-    padding: 8px 12px;
+    transition: all 0.3s ease;
+    padding: 9px 15px;
+    border-radius: 999px;
     white-space: nowrap;
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a.active {
     color: #c8f56a;
-}
 
 /* Active nav item (Home) — green pill */
-.nav-menu a.active {
+ 
     background: #b5e853;
-    color: #1a4a28;
+    color: #ffffff;
     padding: 9px 22px;
     border-radius: 999px;
     font-weight: 600;
@@ -83,14 +94,22 @@ body {
     position: relative;
     height: 100vh;
     min-height: 580px;
-    overflow: visible;
+    overflow: hidden;
+}
+
+/* Clip container — keeps all bg layers inside hero bounds */
+#bg-clip {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
 }
 
 /* Common styles for all background layers */
 [id$="-layer"] {
     position: absolute;
     background-repeat: no-repeat;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
@@ -100,8 +119,9 @@ body {
 #wave-layer {
     background-image: url('Welcome Page/wave.png');
     background-size: 100% auto;
-    background-position: 0 0;
+    background-position: 0 100%;
     z-index: 1;
+    top: 0;
 }
 
 /* LANDING2 LAYER */
@@ -139,17 +159,17 @@ body {
 
 /* LEFT COLUMN — text */
 .hero-text {
-    flex: 1 1 auto;
+    flex: 0 0 62%;
     min-width: 0;
-    max-width: 560px;
+    max-width: 62%;
 }
 
 .hero-text h1 {
     font-family: 'Circular Std Medium', sans-serif;
     font-size: clamp(2.5rem, 5.5vw, 5rem);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.2;
-    margin: -90px 0 12px 0;
+    margin: 0px 0 12px 0;
     letter-spacing: 0px;
     text-shadow: none;
     color: #ffffff;
@@ -164,28 +184,30 @@ body {
 .hero-text p,
 .hero-subtitle {
     font-family: 'Circular Std Medium', sans-serif;
-    font-size: clamp(1rem, 1.6vw, 1.5rem);
-    font-weight: 700;
-    line-height: 1.35;
+    font-size: clamp(1rem, 2.5vw, 2.5rem);
+    font-weight: 560;
+    line-height: 1.4;
     margin: 0 0 22px 0;
+    letter-spacing: 0px;
     text-shadow: none;
     color: #ffffff;
+    white-space: normal;
 }
-
 .hero-actions {
     display: flex;
     align-items: center;
     gap: 22px;
+    margin-left: 0px;
 }
 
 /* Get Started button — dark teal pill */
 .cta-button.primary {
-    background: #1a5c54;
+    background: #48887B;
     color: white;
     border: none;
-    padding: 14px 38px;
+    padding: 18px 36px;
     font-family: 'Circular Std Medium', sans-serif;
-    font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+    font-size: clamp(1.2rem, 1.5vw, 1.4rem);
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
@@ -205,12 +227,12 @@ body {
     border: none;
     color: #ffffff;
     font-family: 'Circular Std Medium', sans-serif;
-    font-size: clamp(0.95rem, 1.1vw, 1.15rem);
-    font-weight: 600;
+    font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+    font-weight: 540;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     padding: 0;
     transition: opacity 0.3s;
     letter-spacing: 0.2px;
@@ -235,20 +257,24 @@ body {
 
 /* RIGHT COLUMN — illustration */
 .hero-image {
-    flex: 0 0 auto;
-    width: auto; /* let the image dictate the column width */
+    flex: 0 0 38%;          /* ← fixed 38% width, won't change */
+    width: 380%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .hero-image img {
-    width: 82%;
+    width: 500px;           /* ← fixed pixel size, independent */
+    max-width: 100px auto;        /* prevent overflow */
     height: auto;
     display: block;
+    position: relative;
+    top: 10px;               /* ← move up (negative) or down (positive) */
+    left: -90px;
 }
 
-/* Section Styles */
+/* Section Styles */    
 section {
     padding: 80px 0;
 }
@@ -260,16 +286,180 @@ section h2 {
     color: #333;
 }
 
+/* Design and Marketing Solutions Section */
+#design-marketing-solutions {
+    position: relative;
+    padding: 0 0 80px;
+    overflow: hidden;
+    text-align: center;
+    z-index: 1;
+}
+
+.solutions-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.solutions-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.solutions-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px 0;
+    box-sizing: border-box;
+}
+
+.solutions-heading {
+    font-family: 'Circular Std Medium', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 60px 0;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.solution-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.solution-item:hover {
+    transform: translateY(-8px);
+}
+
+/* Transparent circle with gradient border */
+.solution-icon {
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    /* Gradient border via outline trick */
+    border: 4px solid transparent;
+    background-clip: padding-box;
+}
+
+/* Gradient border using pseudo-element */
+.solution-icon::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #a8d060 0%, #3a7d44 100%);
+    z-index: -1;
+}
+
+/* White inner fill to create the "transparent with border" look */
+.solution-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    z-index: 0;
+}
+
+.solution-icon img {
+    width: 65%;
+    height: 65%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+}
+
+.solution-item h3 {
+    font-family: 'Circular Std Medium', sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 600;
+    color: #1a3a20;
+    margin: 0;
+    line-height: 1.4;
+    max-width: 180px;
+}
+
 /* About Section */
 .about-section {
-    background: #f8f9fa;
+    position: relative;
+    background: radial-gradient(1200px 600px at 15% 20%, rgba(197, 247, 107, 0.55) 0%, rgba(197, 247, 107, 0) 55%),
+                linear-gradient(90deg, #2b766b 0%, #2f7d73 55%, #2b766b 100%);
+    overflow: hidden;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 70px 70px;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.about-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.about-title {
+    font-family: 'Circular Std Medium', sans-serif;
+    color: #ffffff;
+    text-align: center;
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 800;
+    margin: 0 0 40px 0;
+    letter-spacing: -0.5px;
 }
 
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+    grid-template-columns: 420px 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.about-image-wrapper {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 34px;
+    box-sizing: border-box;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .about-text h2 {
@@ -278,16 +468,11 @@ section h2 {
 }
 
 .about-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #666;
-}
-
-.about-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    font-family: 'Circular Std Medium', sans-serif;
+    font-size: clamp(1rem, 1.15vw, 1.25rem);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 0 24px 0;
 }
 
 /* Services Section */
