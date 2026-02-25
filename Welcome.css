@@ -1,0 +1,584 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Circular Std Medium', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Navigation */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: transparent;
+    z-index: 1000;
+    padding: 18px 0;
+}
+
+.nav-container {
+    position:relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.logo img {
+    height: 120px;        /* make it bigger */
+    max-width: 390px;     /* cap the width so it doesn't push nav */
+    object-fit: contain;
+}
+
+
+
+.nav-menu {
+    position: absolute;
+    left: 715px;           /* ← adjust this to align "Home" with the "8" */
+    top: 40%;
+    transform: translateY(-50%);
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.35rem; /* slightly larger */
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 8px 12px;
+    white-space: nowrap;
+}
+
+.nav-menu a:hover {
+    color: #c8f56a;
+}
+
+/* Active nav item (Home) — green pill */
+.nav-menu a.active {
+    background: #b5e853;
+    color: #1a4a28;
+    padding: 9px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+/* Hero Section */
+#hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 580px;
+    overflow: visible;
+}
+
+/* Common styles for all background layers */
+[id$="-layer"] {
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* WAVE LAYER */
+#wave-layer {
+    background-image: url('Welcome Page/wave.png');
+    background-size: 100% auto;
+    background-position: 0 0;
+    z-index: 1;
+}
+
+/* LANDING2 LAYER */
+#landing2-layer {
+    background-image: url('Welcome Page/Landing2.png');
+    background-size: 100% auto;
+    background-position: 0 0;
+    z-index: 2;
+}
+
+/* LANDING1 LAYER */
+#landing1-layer {
+    background-image: url('Welcome Page/Landing1.png');
+    background-size: 100% auto;
+    background-position: 0 0;
+    z-index: 3;
+}
+
+/* HERO CONTENT — two-column flex layout */
+.hero-content {
+    position: absolute;
+    z-index: 10;
+    top: 100px; /* sit just below the fixed navbar */
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5% 0 8%;
+    box-sizing: border-box;
+    color: white;
+}
+
+/* LEFT COLUMN — text */
+.hero-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 560px;
+}
+
+.hero-text h1 {
+    font-family: 'Circular Std Medium', sans-serif;
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: -90px 0 12px 0;
+    letter-spacing: 0px;
+    text-shadow: none;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+/* "BB88" brand name — lime green accent */
+.hero-text h1 .brand-accent {
+    color: #A8CF45;
+}
+
+.hero-text p,
+.hero-subtitle {
+    font-family: 'Circular Std Medium', sans-serif;
+    font-size: clamp(1rem, 1.6vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 22px 0;
+    text-shadow: none;
+    color: #ffffff;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+/* Get Started button — dark teal pill */
+.cta-button.primary {
+    background: #1a5c54;
+    color: white;
+    border: none;
+    padding: 14px 38px;
+    font-family: 'Circular Std Medium', sans-serif;
+    font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+.cta-button.primary:hover {
+    background: #154d46;
+    transform: translateY(-2px);
+}
+
+/* Watch Video button — play icon + text, no border box */
+.cta-button.watch-video {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: 'Circular Std Medium', sans-serif;
+    font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    transition: opacity 0.3s;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+.cta-button.watch-video:hover {
+    opacity: 0.85;
+}
+
+.play-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.play-icon svg {
+    width: clamp(32px, 3.5vw, 44px);
+    height: clamp(32px, 3.5vw, 44px);
+}
+
+/* RIGHT COLUMN — illustration */
+.hero-image {
+    flex: 0 0 auto;
+    width: auto; /* let the image dictate the column width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 82%;
+    height: auto;
+    display: block;
+}
+
+/* Section Styles */
+section {
+    padding: 80px 0;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+/* About Section */
+.about-section {
+    background: #f8f9fa;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-text h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Services Section */
+.services-section {
+    background: white;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.service-card {
+    text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+    background: #f8f9fa;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.service-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.service-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.service-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Portfolio Section */
+.portfolio-section {
+    background: #f8f9fa;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.portfolio-item {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.05);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Team Section */
+.team-section {
+    background: white;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.team-member {
+    text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+    background: #f8f9fa;
+    transition: transform 0.3s;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.team-member p {
+    color: #666;
+    font-style: italic;
+}
+
+/* Blog Section */
+.blog-section {
+    background: #f8f9fa;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.blog-post {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.blog-post:hover {
+    transform: translateY(-5px);
+}
+
+.blog-post h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.blog-post p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Contact Section */
+.contact-section {
+    background: white;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.contact-form {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.contact-form textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.contact-form button {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.contact-form button:hover {
+    background: linear-gradient(45deg, #0056b3, #004085);
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo img {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    margin: 10px 0 0 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #007bff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .hero-text h2 {
+        font-size: 2.5rem;
+    }
+    
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .services-grid,
+    .portfolio-grid,
+    .team-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        justify-content: center;
+        padding: 100px 6% 20px;
+        gap: 20px;
+    }
+
+    .hero-text {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-image {
+        width: 80%;
+        max-width: 360px;
+    }
+}
