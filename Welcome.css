@@ -431,6 +431,18 @@ section h2 {
     z-index: 1;
 }
 
+.about-section,
+.about-section * {
+    font-family: 'Circular Std', 'Circular Std Medium', sans-serif;
+}
+
+.about-section,
+.about-section .about-title,
+.about-section .about-text,
+.about-section .about-text p {
+    color: #ffffff;
+}
+
 .about-title {
     font-family: 'Circular Std Medium', sans-serif;
     color: #ffffff;
@@ -443,23 +455,28 @@ section h2 {
 
 .about-content {
     display: grid;
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: 520px 1fr;
     gap: 48px;
-    align-items: start;
+    align-items: center;
 }
 
 .about-image-wrapper {
     background: #ffffff;
     border-radius: 18px;
-    padding: 34px;
+    padding: 22px;
     box-sizing: border-box;
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .about-image-wrapper img {
     width: 100%;
     height: auto;
     display: block;
+    object-fit: contain;
 }
 
 .about-text h2 {
