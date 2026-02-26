@@ -252,7 +252,7 @@ body {
 
 .hero-image {
     flex: 0 0 38%;
-    width: 380%;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -260,7 +260,7 @@ body {
 
 .hero-image img {
     width: 500px;
-    max-width: 100px auto;
+    max-width: 100%;
     height: auto;
     display: block;
     position: relative;
@@ -726,6 +726,192 @@ section h2 {
     .hero-image {
         width: 80%;
         max-width: 360px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .logo {
+        left: 0;
+    }
+
+    .nav-menu {
+        position: static;
+        transform: none;
+        left: auto;
+        top: auto;
+        justify-content: flex-end;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu a {
+        font-size: 1.05rem;
+        padding: 8px 12px;
+    }
+
+    .hero-content {
+        position: relative;
+        top: auto;
+        padding: 140px 6% 0;
+    }
+
+    .hero-image img {
+        width: min(420px, 100%);
+        left: 0;
+        top: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        position: absolute;
+        padding: 14px 0;
+    }
+
+    .logo img {
+        height: 90px;
+        max-width: 260px;
+    }
+
+    .nav-menu {
+        justify-content: center;
+        margin-top: 8px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+        padding: 140px 7% 0;
+    }
+
+    .hero-text {
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .hero-text h1 {
+        white-space: normal;
+    }
+
+    .hero-image {
+        flex: none;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .hero-image img {
+        width: min(520px, 100%);
+    }
+
+    .solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-image-wrapper,
+    .about-text {
+        flex: none;
+        width: 100%;
+    }
+
+    .about-image-wrapper {
+        min-height: 0;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 60px 0;
+    }
+
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .navbar {
+        padding: 10px 0;
+    }
+
+    .logo img {
+        height: 72px;
+        max-width: 220px;
+    }
+
+    .nav-menu a {
+        font-size: 0.98rem;
+        padding: 7px 10px;
+    }
+
+    .hero-content {
+        padding: 120px 6% 0;
+    }
+
+    .hero-actions {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .cta-button.primary {
+        padding: 14px 26px;
+    }
+
+    .solutions-inner {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .solutions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image-wrapper {
+        min-height: 360px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .clients-wrapper {
+        max-width: 100%;
+    }
+
+    .clients-row {
+        gap: 28px;
+    }
+
+    .clients-row img {
+        height: 60px;
+        max-width: 140px;
     }
 }
 
