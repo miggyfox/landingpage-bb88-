@@ -187,13 +187,27 @@ distribution, and marketing.</p>
 <section id="clients" class="clients-section">
   <div class="container">
     <h1 class="section-title">Clients</h1>
-    <h3 class="section-subtitle">We are trusted by brands and businesses across different industries</h3>
-    <div class="clients-row">
-      <img src="bb88 design (NEWJAN)/ICON/adkoto.png" alt="Client">
-      <img src="bb88 design (NEWJAN)/ICON/fb.png" alt="Client">
-      <img src="bb88 design (NEWJAN)/ICON/i.g.png" alt="Client">
-      <img src="bb88 design (NEWJAN)/ICON/tw.png" alt="Client">
-      <img src="bb88 design (NEWJAN)/ICON/yt.png" alt="Client">
+    <h3 class="section-subtitle">We are honored to work with some of the industry's <br> most esteemed clients</h3>
+    
+    <div class="clients-wrapper">
+      <div class="clients-row" id="clients-track">
+        <img src="bb88 design (NEWJAN)/LOGO/FLDC.png" alt="Client">
+        <img src="bb88 design (NEWJAN)/LOGO/GPCF.png" alt="Client">
+        <img src="bb88 design (NEWJAN)/LOGO/MIGS.png" alt="Client">
+        <img src="bb88 design (NEWJAN)/LOGO/BIO.png" alt="Client">
+        <img src="bb88 design (NEWJAN)/LOGO/BC DELIVERY.png" alt="Client">
+        <img src="bb88 design (NEWJAN)/LOGO/B ONLINE.png" alt="Client">
+        <img src="bb88 design (NEWJAN)/LOGO/NPO.png" alt="Client">
+      </div>
+    </div>
+
+<div class="clients-dots" id="clients-dots">
+       <span class="dot"></span>
+       <span class="dot"></span>
+       <span class="dot"></span>
+       <span class="dot active"></span> <span class="dot"></span>
+       <span class="dot"></span>
+       <span class="dot"></span>
     </div>
   </div>
 </section>
@@ -204,7 +218,7 @@ distribution, and marketing.</p>
     <h3 class="section-subtitle">Take a look at some of our works and projects</h3>
     <div class="portfolio-grid">
       <div class="portfolio-item"><img src="bb88 design (NEWJAN)/BRANDING/PIC1.jpg" alt="Portfolio"></div>
-      <div class="portfolio-item"><img src="bb88 design (NEWJAN)/BRANDING/branding1.jpg" alt="Portfolio"></div>
+      <div class="portfolio-item"><img src="bb88 design (NEWJAN)/BRANDING/BAGSAKAN DELIVERY branding.jpg" alt="Portfolio"></div>
       <div class="portfolio-item"><img src="bb88 design (NEWJAN)/BRANDING/branding2.jpg" alt="Portfolio"></div>
       <div class="portfolio-item"><img src="bb88 design (NEWJAN)/BRANDING/branding3.jpg" alt="Portfolio"></div>
       <div class="portfolio-item"><img src="bb88 design (NEWJAN)/BRANDING/branding4.jpg" alt="Portfolio"></div>
@@ -220,7 +234,7 @@ distribution, and marketing.</p>
   <div class="container">
     <h1 class="section-title">Our Team</h1>
     <h2 class="section-subtitle">
-      Meet the key roles that form our team of dedicated and creative professionals
+      Meet the key roles that form our team of dedicated<br> and creative professionals
     </h2>
   </div>
 </section>
@@ -355,7 +369,7 @@ distribution, and marketing.</p>
 <section id="contact" class="contact-section">
   <div class="container">
     <h1 class="section-title">Contact Us</h1>
-    <h3 class="section-subtitle">Let’s talk about how we can help your business grow</h3>
+    <h3 class="section-subtitle">Let's talk about how we can help your business grow</h3>
     <div class="contact-content">
       <div class="contact-info">
         <p>Email: info@bb88.com</p>
@@ -373,6 +387,64 @@ distribution, and marketing.</p>
     </div>
   </div>
 </section>
+
+<!-- ===== Back to Top Button ===== -->
+<button id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<script>
+  const backToTopBtn = document.getElementById('back-to-top');
+  const heroSection = document.getElementById('hero-section');
+
+window.addEventListener('scroll', () => {
+  // Show button after scrolling down just 300 pixels
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add('visible');
+  } else {
+    backToTopBtn.classList.remove('visible');
+  }
+});
+  // Smooth scroll back to top of hero on click
+  backToTopBtn.addEventListener('click', () => {
+    heroSection.scrollIntoView({ behavior: 'smooth' });
+  });
+
+// ===== Clients Logo Slider & Dots =====
+  const clientsTrack = document.getElementById('clients-track');
+  const dots = document.querySelectorAll('#clients-dots .dot');
+  let currentDotIndex = 3; // Keeps track of which dot is green
+
+  setInterval(() => {
+    // 1. Grab the LAST logo in the track
+    const lastLogo = clientsTrack.lastElementChild;
+    const slideDistance = lastLogo.offsetWidth + 60; // Your 60px CSS gap
+
+    // 2. Instantly turn off animations for a quick background reshuffle
+    clientsTrack.style.transition = 'none';
+    
+    // 3. Move that last logo to the very front of the line
+    clientsTrack.prepend(lastLogo);
+    
+    // 4. Instantly shift the track to the left so visually, nothing appears to have moved yet
+    clientsTrack.style.transform = `translateX(-${slideDistance}px)`;
+
+    // 5. Force the browser to apply the instant changes before we animate
+    clientsTrack.offsetHeight; 
+
+    // 6. Turn the smooth animation back on and slide the whole track to the RIGHT (back to 0)
+    clientsTrack.style.transition = 'transform 0.8s ease-in-out';
+    clientsTrack.style.transform = 'translateX(0)';
+
+    // 7. Move the green dot to the RIGHT to match the logo movement
+    currentDotIndex = (currentDotIndex + 1) % dots.length;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentDotIndex].classList.add('active');
+
+  }, 5000);
+</script>
 
 </body>
 </html>

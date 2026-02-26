@@ -94,7 +94,7 @@ body {
     position: relative;
     height: 100vh;
     min-height: 580px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     z-index: 2;
 }
 
@@ -108,6 +108,8 @@ body {
 [id$="-layer"] {
     position: absolute;
     background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center bottom;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -116,8 +118,8 @@ body {
 
 #wave-layer {
     background-image: url('Welcome Page/wave.png');
-    background-size: 100% 100%;
-    background-position: 0 100%;
+    background-size: cover; 
+    background-position: center bottom;
     z-index: 1;
     top: 0;
     height: 100%;
@@ -425,8 +427,8 @@ section h2 {
 
 /* CENTER GLOW */
 .center-glow {
-    top: 50%;
-    left: 60%;
+    top: 60%;
+    left: 70%;
     transform: translate(-50%, -50%);
     width: 350px;
     height: 350px;
@@ -553,25 +555,70 @@ section h2 {
 }
 
 /* Clients Section */
-.clients-section {
-    background: #ffffff;
-    text-align: center;
+/* The "Window" that hides the logos when they slide out of view */
+.clients-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden; /* Acts like scissors cutting off anything outside the box */
+  padding: 20px 0;
 }
 
+/* The long track holding all the logos */
 .clients-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 22px;
-    flex-wrap: wrap;
-    margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Changed from center so they line up neatly to slide */
+  gap: 60px;
+  margin-top: 10px;
+  width: max-content; /* Allows the track to be as wide as it needs to be */
+  transition: transform 0.8s ease-in-out; /* Creates the smooth sliding animation */
 }
 
 .clients-row img {
-    height: 46px;
-    width: auto;
-    display: block;
-    opacity: 0.9;
+  height: 85px; /* Increased from 46px to make logos larger */
+  width: auto;
+  max-width: 160px; /* Prevents exceptionally wide logos from taking over */
+  object-fit: contain; /* Ensures logos don't get stretched */
+  display: block;
+  opacity: 1; /* Changed from 0.9 to make the colors fully pop */
+  transition: transform 0.3s ease; /* Adds a smooth transition for the hover effect */
+}
+
+/* ===== Clients Slider Dots ===== */
+.clients-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px; /* Space between the logos and the dots */
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background-color: #e0e0e0; /* Light grey */
+  border-radius: 50%;
+  transition: background-color 0.4s ease; /* Smooth color fade */
+}
+
+.dot.active {
+  background-color: #A8CF45; /* Brand green */
+}
+
+/* Adds a nice interactive "pop" when a user hovers over a logo */
+.clients-row img:hover {
+  transform: scale(1.08); 
+}
+
+/* Responsive adjustment so the logos don't break the layout on phones */
+@media (max-width: 768px) {
+  .clients-row {
+    gap: 30px;
+  }
+  .clients-row img {
+    height: 60px;
+  }
 }
 
 /* Contact Section */
@@ -792,21 +839,38 @@ section h2 {
 .section-title {
   font-size: 2.5rem;
   color: var(--text-color);
-  margin-bottom: 20px;
   position: relative;
-  display: inline-block;
+  text-align: center;
+  
+  /* These three lines guarantee it is always centered perfectly */
+  display: block; 
+  width: fit-content; 
+  margin: 0 auto 25px auto; /* Centers the block and adds 25px gap below */
+}
+
+/* 1. The long, thin grey line */
+.section-title::before {
+  content: '';
+  position: absolute;
+  bottom: -15px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px; /* Adjust this to make the grey line wider/shorter */
+  height: 2px;
+  background-color: #e0e0e0;
+  display: block;
 }
 
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -12px;
+  bottom: -18px; /* Positioned exactly so it vertically centers over the grey line */
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
-  height: 5px;
+  width: 50px; /* Width of the green box */
+  height: 8px; /* Thickness of the green box */
   background-color: #A8CF45;
-  border-radius: 3px;
+  border-radius: 2px;
   display: block;
 }
 
@@ -815,13 +879,24 @@ section h2 {
   font-size: 1.5rem;
   color: var(--primary-green);
   margin-bottom: 50px;
+  font-weight: 500; /* Fixed the 'px' typo so it works now! */
+  text-align: center; /* Ensures subtitles are centered globally */
+}
+
+/* Specific styling to match your reference image for Clients */
+.clients-section .section-subtitle {
+  font-size: 1.35rem; 
   font-weight: 500;
+  color: #2D6A5F; /* The exact dark green from your other cards */
+  line-height: 1.5;
+  margin-top: 25px; /* Gives it a bit of breathing room from the title above */
+  margin-bottom: 50px;
 }
 
 /* Services subtitle */
 .services-section .section-subtitle {
-  font-size: 1.4rem;
-  font-weight: 600 !important;
+  font-size: 1.5rem;
+  font-weight: 400 !important;
   text-align: center;
   padding-left: 10px;
   margin-bottom: 40px;
@@ -1171,5 +1246,62 @@ section h2 {
   }
   .service-card {
     width: 90%;
+  }
+}
+
+/* ===== Back to Top Button Styling ===== */
+#back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: #A8CF45; /* Matches your brand's green accent */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  /* Hidden state by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px); 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+}
+
+#back-to-top svg {
+  width: 24px;
+  height: 24px;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+#back-to-top:hover {
+  background-color: #48887B; /* Darker primary green on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Visible state triggered by your existing JavaScript */
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Responsive adjustment for mobile screens */
+@media (max-width: 768px) {
+  #back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
   }
 }
