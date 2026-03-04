@@ -124,14 +124,14 @@ body {
 }
 
 #landing2-layer {
-    background-image: url(' ./Welcome Page/Landing2.png');
+    background-image: url('./Welcome Page/LANDING2.png');
     background-size: 100% auto;
     background-position: 0 0;
     z-index: 2;
 }
 
 #landing1-layer {
-    background-image: url('./Welcome Page/Landing1.png');
+    background-image: url('./Welcome Page/LANDING1.png');
     background-size: 100% auto;
     background-position: 0 0;
     z-index: 3;
