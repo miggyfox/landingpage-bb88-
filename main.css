@@ -442,6 +442,12 @@ section h2 {
     animation: glow-bubble-center 12s ease-in-out infinite;
 }
 
+/* Team section: center glow between Multimedia Artists and Creative Writers */
+.team-section .center-glow {
+    top: 50%;
+    left: 50%;
+}
+
 @keyframes glow-bubble-center {
     0%, 100% { transform: translate(-50%, -50%) translate(0, 0) scale(1); }
     33%      { transform: translate(-50%, -50%) translate(10px, -18px) scale(1.03); }
@@ -723,7 +729,7 @@ section h2 {
 .portfolio-category {
     font-size: 0.95rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0;
     color: #48887B;
     font-family: 'Circular Std', 'Circular Std Medium', sans-serif;
 }
@@ -1456,19 +1462,30 @@ section h2 {
 }
 
 .team-icon {
+  position: relative;
   flex: 0 0 70px;
   height: 70px;
-  border: 2px solid #A8CF45;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 20px;
-  background-color: #ffffff;
+  background: linear-gradient(to right, #A8CF45, #48887B);
+  padding: 3px; /* thickness of gradient ring */
   overflow: hidden;
 }
 
+.team-icon::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
 .team-icon img {
+  position: relative;
+  z-index: 1;
   width: 60%;
   height: auto;
   object-fit: contain;
@@ -1481,11 +1498,15 @@ section h2 {
   display: flex;
   align-items: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease;
+  border: 4px solid transparent;
+  transform: scale(1);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .team-card:hover {
-  transform: translateY(-5px);
+  border-color: #A8CF45;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2), 0 0 20px rgba(168, 207, 69, 0.35);
+  transform: scale(1.04);
 }
 
 .team-info h4 {
@@ -1509,7 +1530,7 @@ section h2 {
   display: block;
   width: 130px;
   height: 4px;
-  background-color: #A8CF45;
+  background-image: linear-gradient(to right, #A8CF45, #48887B);
   margin-top: 15px;
   border-radius: 2px;
   align-self: flex-start;
@@ -1519,7 +1540,7 @@ section h2 {
   margin-top: 15px;
   font-size: 0.95rem;
   line-height: 1.5;
-  color: #555;
+  color: #000000;
 }
 
 .team-grid {
