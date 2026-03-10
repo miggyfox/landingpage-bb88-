@@ -2092,3 +2092,27 @@ section h2 {
   .navbar hover .nav-menu li a {
     color: #A8CF45;
   }
+   /* Tablet   ---post-------*/
+@media (max-width: 992px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .post-image {
+    height: 200px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .post-content h4 {
+    font-size: 0.95rem;
+  }
+}
