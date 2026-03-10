@@ -1977,3 +1977,118 @@ section h2 {
     height: 45px;
   }
 }
+/* ===== Desktop Navbar ===== */
+.navbar {
+  width: 100%;
+  background: transparent; /* change as needed */
+  padding: 15px 30px;
+  box-sizing: border-box;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Menu links */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+/* Hamburger hidden on desktop */
+.hamburger {
+   display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.bar {
+ width: 28px;
+  height: 3px;
+  background-color: #000;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* ===== Mobile Navbar ===== */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-menu {
+    position: absolute;
+    top: 100%; /* below navbar */
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    display: none; /* hidden by default */
+    padding: 20px 0;
+    z-index: 999; /* above everything */
+    background: linear-gradient(
+      135deg,
+      #A8CF45,
+      #1a5c4d,
+      #48887B,
+      #6bd1ff
+  );
+
+  background-size: 300% 300%;
+  animation: gradientMove 8s ease infinite;
+}
+
+    .nav-menu.active {
+    display: flex;
+    animation: slideDown 0.4s ease;
+  }
+  }
+   .hamburger.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu li {
+    margin: 12px 0;
+  }
+
+  .nav-menu li a {
+    color: white;
+    font-size: 18px;
+  }
+  .navbar hover .nav-menu li a {
+    color: #A8CF45;
+  }
